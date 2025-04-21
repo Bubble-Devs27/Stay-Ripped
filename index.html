@@ -1,667 +1,1306 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href='https://fonts.googleapis.com/css?family=Joti One' rel='stylesheet'>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Joti One"
+      rel="stylesheet"
+    />
     <title>Stay Ripped</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: Arial, sans-serif;
-        }
-        
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #000;
-            min-height: 100vh;
-        }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Arial, sans-serif;
+      }
+
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #000;
+        min-height: 100vh;
+      }
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 40px 0px;
+        margin-top: 50px;
+      }
+
+      .header {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .by-text {
+        font-size: 16px;
+        color: #848484;
+      }
+
+      .name {
+        font-size: 52px;
+        font-weight: bold;
+        background: -webkit-linear-gradient(#e86939, #999999);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        font-family: "Joti One";
+      }
+
+      .title {
+        font-size: 18px;
+        color: #ccc;
+        margin-bottom: 50px;
+      }
+
+      .content {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+
+        gap: 30px;
+        margin-bottom: 80px;
+      }
+
+      .text-section {
+        flex: 1;
+
+        height: 100%;
+      }
+      .text-section p {
+        color: white;
+        font-size: 16px;
+      }
+
+      .image-section {
+        max-width: 400px;
+      }
+
+      .trainer-image {
+        width: 100%;
+        height: auto;
+        border-radius: 12px;
+        background-color: #e67043;
+        overflow: hidden;
+      }
+
+      .trainer-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+
+      .buttons {
+        display: flex;
+        gap: 20px;
+        margin-top: 30px;
+      }
+
+      .btn {
+        padding: 12px 20px;
+        border-radius: 6px;
+        font-size: 16px;
+        cursor: pointer;
+        text-align: center;
+        border: none;
+        transition: all 0.3s ease;
+        min-width: 160px;
+      }
+
+      .btn-primary {
+        background: #e86939;
+        background: linear-gradient(
+          90deg,
+          rgba(232, 105, 57, 1) 0%,
+          rgba(153, 153, 153, 1) 100%
+        );
+        color: white;
+      }
+
+      .btn-primary:hover {
+        background: #e86939;
+        background: linear-gradient(
+          90deg,
+          rgba(153, 153, 153, 1) 0%,
+          rgba(232, 105, 57, 1) 100%
+        );
+      }
+
+      .btn-outline {
+        background-color: transparent;
+        color: white;
+        border: 1px solid #e67043;
+      }
+
+      .btn-outline:hover {
+        background: #e86939;
+        background: linear-gradient(
+          90deg,
+          rgba(232, 105, 57, 1) 0%,
+          rgba(153, 153, 153, 1) 100%
+        );
+        color: white;
+      }
+
+      /* Pricing Section */
+      .pricing-section {
+        padding: 40px 0;
+      }
+
+      .pricing-header {
+        text-align: center;
+        margin-bottom: 40px;
+      }
+
+      .pricing-title {
+        font-size: 32px;
+        background: -webkit-linear-gradient(#e86939, #999999);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        font-weight: 300;
+        margin-bottom: 5px;
+      }
+
+      .pricing-description {
+        font-size: 16px;
+        max-width: 600px;
+        margin: 0 auto;
+        color: white;
+        font-weight: 400;
+      }
+
+      .pricing-cards {
+        display: flex;
+        gap: 30px;
+        justify-content: center;
+        align-items: flex-start;
+      }
+
+      .pricing-card {
+        background-color: #1b1819;
+        border-radius: 12px;
+        padding: 24px;
+        width: 300px;
+        min-height: 440px;
+        display: flex;
+        flex-direction: column;
+      }
+      .pricing-card-simple {
+        background-color: #1b1819;
+        border-radius: 12px;
+        padding: 24px;
+        width: 300px;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .card-label {
+        display: flex;
+        justify-content: flex-end;
+        color: white;
+        font-size: 12px;
+        margin-bottom: 10px;
+      }
+      .inner-card-label {
+        background-color: #e67043;
+        padding: 4px 12px;
+        border-radius: 5px;
+      }
+
+      .card-title {
+        font-size: 20px;
+        font-weight: bold;
+        margin-bottom: 15px;
+        color: white;
+
+        text-align: left;
+      }
+
+      .card-price {
+        display: flex;
+        align-items: baseline;
+        margin-bottom: 5px;
+        color: white;
+      }
+
+      .price-amount {
+        font-size: 36px;
+        font-weight: bold;
+      }
+
+      .price-period {
+        font-size: 14px;
+        margin-left: 5px;
+      }
+
+      .terms {
+        font-size: 12px;
+        color: #888;
+        margin-bottom: 20px;
+        text-align: left;
+      }
+
+      .features-title {
+        font-size: 18px;
+        margin-bottom: 10px;
+        color: white;
+        text-align: left;
+      }
+
+      .features-list {
+        list-style-type: none;
+        margin-bottom: 20px;
+        color: white;
+        font-size: 13px;
+      }
+
+      .features-list li {
+        margin-bottom: 10px;
+        position: relative;
+        padding-left: 18px;
+      }
+
+      .features-list li:before {
+        content: "•";
+        position: absolute;
+        left: 0;
+        color: #e67043;
+      }
+
+      .card-button {
+        margin-top: auto;
+        width: 100%;
+      }
+
+      .arrow-button {
+        width: 40px;
+        height: 40px;
+        background-color: #e67043;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-left: auto;
+        cursor: pointer;
+      }
+
+      .arrow-button svg {
+        width: 20px;
+        height: 20px;
+        fill: white;
+      }
+
+      .pagination {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        margin-top: 30px;
+      }
+
+      .pagination-dot {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background-color: #444;
+        cursor: pointer;
+      }
+
+      .pagination-dot.active {
+        background-color: white;
+      }
+
+      /* Mobile Styles */
+      @media (max-width: 768px) {
         .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 40px 20px;
-            margin-top: 50px;
+          padding: 20px 15px;
+          text-align: center;
         }
 
         .header {
-            display: flex;
-            flex-direction: column;
-            
-           
-        }
-
-        .by-text {
-            font-size: 16px;
-            color: #848484;
-            
+          align-items: center;
         }
 
         .name {
-            font-size: 52px;
-            font-weight: bold;
-            background: -webkit-linear-gradient(#E86939, #999999);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            font-family: 'Joti One'
-        }
-
-        .title {
-            font-size: 18px;
-            color: #ccc;
-            margin-bottom: 50px;
+          font-size: 36px;
         }
 
         .content {
-            display: flex;
-            flex-direction: row;
-            justify-content: space-between;
-            
-            gap: 30px;
-            margin-bottom: 80px;
-            
+          flex-direction: column-reverse;
+          margin-bottom: 40px;
         }
 
         .text-section {
-            flex: 1;
-            
-            height: 100%;
-            
-        }
-        .text-section p{
-            color: white;
-            font-size: 16px;
+          text-align: center;
         }
 
         .image-section {
-            
-            max-width: 400px;
-        }
-
-        .trainer-image {
-            width: 100%;
-            height: auto;
-            border-radius: 12px;
-            background-color: #e67043;
-            overflow: hidden;
-        }
-
-        .trainer-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
+          max-width: 300px;
+          margin: 0 auto 20px;
         }
 
         .buttons {
-            display: flex;
-            gap: 20px;
-            margin-top: 30px;
+          flex-direction: column;
+          align-items: center;
+          gap: 15px;
         }
 
         .btn {
-            padding: 12px 20px;
-            border-radius: 6px;
-            font-size: 16px;
-            cursor: pointer;
-            text-align: center;
-            border: none;
-            transition: all 0.3s ease;
-            min-width: 160px;
+          width: 100%;
+          max-width: 300px;
         }
 
-        .btn-primary {
-            background: #E86939;
-            background: linear-gradient(90deg,rgba(232, 105, 57, 1) 0%, rgba(153, 153, 153, 1) 100%);
-            color: white;
-        }
-
-        .btn-primary:hover {
-            background: #E86939;
-            background: linear-gradient(90deg,rgba(153, 153, 153, 1) 0%, rgba(232, 105, 57, 1) 100%);
-        }
-        
-        .btn-outline {
-            background-color: transparent;
-            color: white;
-            border: 1px solid #e67043;
-        }
-
-        .btn-outline:hover {
-            background: #E86939;
-            background: linear-gradient(90deg,rgba(232, 105, 57, 1) 0%, rgba(153, 153, 153, 1) 100%);
-            color: white;
-            
-        }
-
-        /* Pricing Section */
-        .pricing-section {
-            padding: 40px 0;
-        }
-
-        .pricing-header {
-            text-align: center;
-            margin-bottom: 40px;
-        }
-
-        .pricing-title {
-            font-size: 32px;
-            background: -webkit-linear-gradient(#E86939, #999999);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 5px;
-            font-weight: 300;
-        }
-
-        .pricing-description {
-            font-size: 16px;
-            max-width: 600px;
-            margin: 0 auto;
-            color: white;
-            font-weight: 400;
+        .pricing-cards-container {
+          width: 100%;
+          overflow-x: auto;
+          -webkit-overflow-scrolling: touch;
+          padding-bottom: 20px;
         }
 
         .pricing-cards {
-            display: flex;
-            gap: 30px;
-            justify-content: center;
-            align-items: flex-start;
+          min-width: min-content;
+          padding: 0 15px;
         }
 
         .pricing-card {
-            background-color: #1B1819;
-            border-radius: 12px;
-            padding: 24px;
-            width: 300px;
-            min-height: 440px;
-            display: flex;
-            flex-direction: column;
-          
+          min-width: 280px;
+          flex-shrink: 0;
         }
-        .pricing-card-simple {
-            background-color: #1B1819;
-            border-radius: 12px;
-            padding: 24px;
-            width: 300px;
-            display: flex;
-            flex-direction: column;
-          
-        }
+      }
 
-        .card-label {
-           
-            display: flex;
-            justify-content: flex-end;
-            color: white;
-            font-size: 12px;
-            margin-bottom: 10px;
-        }
-        .inner-card-label{
-            background-color: #e67043;
-            padding: 4px 12px;
-            border-radius: 5px;
-        }
+      .navbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem 2rem;
+        background-color: #000;
+        color: #fff;
+      }
 
-        .card-title {
-            font-size: 20px;
-            font-weight: bold;
-            margin-bottom: 15px;
-            color: white;
-           
-            text-align: left;
-        }
+      .logo {
+        height: 40px;
+      }
 
-        .card-price {
-            display: flex;
-            align-items: baseline;
-            margin-bottom: 5px;
-            color: white;
-        }
+      .nav-links {
+        display: flex;
+        list-style: none;
+      }
 
-        .price-amount {
-            font-size: 36px;
-            font-weight: bold;
-        }
+      .nav-links li {
+        margin-left: 2rem;
+      }
 
-        .price-period {
-            font-size: 14px;
-            margin-left: 5px;
-        }
+      .nav-links a {
+        text-decoration: none;
+        color: #fff;
+        font-size: 1rem;
+        transition: color 0.3s ease;
+      }
 
-        .terms {
-            font-size: 12px;
-            color: #888;
-            margin-bottom: 20px;
-            text-align: left;
-        }
+      .nav-links a:hover {
+        color: #ff8351; /* Orange color similar to the logo */
+      }
 
-        .features-title {
-            font-size: 18px;
-            margin-bottom: 10px;
-            color: white;
-            text-align: left;
-        }
+      .hamburger {
+        display: none;
+        cursor: pointer;
+        background: none;
+        border: none;
+      }
 
-        .features-list {
-            list-style-type: none;
-            margin-bottom: 20px;
-            color: white;
-            font-size: 13px;
-        }
+      .hamburger div {
+        width: 25px;
+        height: 3px;
+        background-color: #fff;
+        margin: 5px 0;
+        transition: all 0.3s ease;
+      }
 
-        .features-list li {
-            margin-bottom: 10px;
-            position: relative;
-            padding-left: 18px;
-        }
-
-        .features-list li:before {
-            content: "•";
-            position: absolute;
-            left: 0;
-            color: #e67043;
-        }
-
-        .card-button {
-            margin-top: auto;
-            width: 100%;
-        }
-
-        .arrow-button {
-            width: 40px;
-            height: 40px;
-            background-color: #e67043;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-left: auto;
-            cursor: pointer;
-        }
-
-        .arrow-button svg {
-            width: 20px;
-            height: 20px;
-            fill: white;
-        }
-
-        .pagination {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            margin-top: 30px;
-        }
-
-        .pagination-dot {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background-color: #444;
-            cursor: pointer;
-        }
-
-        .pagination-dot.active {
-            background-color: white;
-        }
-
-        /* Mobile Styles */
-        @media (max-width: 768px) {
-            .container {
-                padding: 20px 15px;
-                text-align: center;
-            }
-
-            .header {
-                align-items: center;
-            }
-
-            .name {
-                font-size: 36px;
-            }
-
-            .content {
-                flex-direction: column-reverse;
-                margin-bottom: 40px;
-            }
-
-            .text-section {
-                text-align: center;
-            }
-
-            .image-section {
-                max-width: 300px;
-                margin: 0 auto 20px;
-            }
-
-            .buttons {
-                flex-direction: column;
-                align-items: center;
-                gap: 15px;
-            }
-
-            .btn {
-                width: 100%;
-                max-width: 300px;
-            }
-
-            .pricing-cards-container {
-                width: 100%;
-                overflow-x: auto;
-                -webkit-overflow-scrolling: touch;
-                padding-bottom: 20px;
-            }
-
-            .pricing-cards {
-                min-width: min-content;
-                padding: 0 15px;
-            }
-
-            .pricing-card {
-                min-width: 280px;
-                flex-shrink: 0;
-            }
-        }
-        
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1rem 2rem;
-            background-color: #000;
-            color: #fff;
-        }
-        
-        .logo {
-            height: 40px;
-        }
-        
+      @media screen and (max-width: 768px) {
         .nav-links {
-            display: flex;
-            list-style: none;
+          position: fixed;
+          right: -100%;
+          top: 70px;
+          flex-direction: column;
+          background-color: #000;
+          width: 100%;
+          text-align: center;
+          transition: 0.5s;
+          padding: 2rem 0;
         }
-        
+
+        .nav-links.active {
+          right: 0;
+        }
+
         .nav-links li {
-            margin-left: 2rem;
+          margin: 1.5rem 0;
         }
-        
-        .nav-links a {
-            text-decoration: none;
-            color: #fff;
-            font-size: 1rem;
-            transition: color 0.3s ease;
-        }
-        
-        .nav-links a:hover {
-            color: #ff8351; /* Orange color similar to the logo */
-        }
-        
+
         .hamburger {
-            display: none;
-            cursor: pointer;
-            background: none;
-            border: none;
+          display: block;
         }
+
+        .hamburger.active .bar:nth-child(1) {
+          transform: rotate(-45deg) translate(-5px, 6px);
+        }
+
+        .hamburger.active .bar:nth-child(2) {
+          opacity: 0;
+        }
+
+        .hamburger.active .bar:nth-child(3) {
+          transform: rotate(45deg) translate(-5px, -6px);
+        }
+      }
+      .testy_main_container {
+        max-width: 100vw;
+        margin: 0 auto;
+        font-family: Arial, sans-serif;
         
-        .hamburger div {
-            width: 25px;
-            height: 3px;
-            background-color: #fff;
-            margin: 5px 0;
-            transition: all 0.3s ease;
-        }
+      }
+
+      .testy_heading_section {
+        text-align: center;
+        padding: 20px 0;
+        background-color: #ffffff;
+        border-radius: 10px 10px 0px 0px;
+      }
+
+      .testy_main_heading {
         
-        @media screen and (max-width: 768px) {
-            .nav-links {
-                position: fixed;
-                right: -100%;
-                top: 70px;
-                flex-direction: column;
-                background-color: #000;
-                width: 100%;
-                text-align: center;
-                transition: 0.5s;
-                padding: 2rem 0;
-            }
-            
-            .nav-links.active {
-                right: 0;
-            }
-            
-            .nav-links li {
-                margin: 1.5rem 0;
-            }
-            
-            .hamburger {
-                display: block;
-            }
-            
-            .hamburger.active .bar:nth-child(1) {
-                transform: rotate(-45deg) translate(-5px, 6px);
-            }
-            
-            .hamburger.active .bar:nth-child(2) {
-                opacity: 0;
-            }
-            
-            .hamburger.active .bar:nth-child(3) {
-                transform: rotate(45deg) translate(-5px, -6px);
-            }
+        margin: 0 0 5px 0;
+        font-size: 32px;
+        background: -webkit-linear-gradient(#e86939, #999999);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        
+        font-weight: 400;
+      }
+
+      .testy_tagline {
+        font-size: 16px;
+        margin: 0;
+        color: #555;
+      }
+
+      .testy_container {
+        overflow: hidden;
+        position: relative;
+        padding: 20px 15px;
+        background-color: white;
+        border-radius: 0px 0px 10px 10px;
+      }
+
+      .testy_slider {
+        display: flex;
+        transition: transform 0.5s ease-in-out;
+      }
+
+      .testy_slide {
+        min-width: 100%;
+        padding: 0 15px;
+        box-sizing: border-box;
+      }
+
+      .testy_transformation {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-color: #f5f5f5;
+        border-radius: 10px;
+        padding: 20px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      }
+
+      .testy_photo_container {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        margin-bottom: 20px;
+        width: 100%;
+      }
+
+      .testy_photo {
+        width: 45%;
+        max-width: 300px;
+        height: auto;
+        border-radius: 8px;
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+      }
+
+      .testy_content {
+        text-align: center;
+        width: 100%;
+      }
+
+      .testy_name {
+        font-size: 24px;
+        margin-bottom: 10px;
+        color: #333;
+      }
+
+      .testy_text {
+        font-size: 16px;
+        line-height: 1.5;
+        color: #666;
+        margin-bottom: 15px;
+      }
+
+      .testy_rating {
+        margin-top: 10px;
+      }
+
+      .testy_star {
+        color: #ff9900;
+        font-size: 24px;
+      }
+
+      .testy_dots {
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+      }
+
+      .testy_dot {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background-color: #ccc;
+        margin: 0 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+
+      .testy_dot.testy_active {
+        background-color: #ff9900;
+      }
+
+      /* Responsive styles */
+      @media (max-width: 768px) {
+        .testy_main_heading {
+          font-size: 28px;
         }
+
+        .testy_tagline {
+          font-size: 14px;
+        }
+
+        .testy_photo_container {
+          gap: 10px;
+        }
+
+        .testy_name {
+          font-size: 20px;
+        }
+
+        .testy_text {
+          font-size: 14px;
+        }
+
+        .testy_star {
+          font-size: 20px;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .testy_main_heading {
+          font-size: 24px;
+        }
+
+        .testy_photo {
+          width: 48%;
+        }
+
+        .testy_name {
+          font-size: 18px;
+        }
+
+        .testy_text {
+          font-size: 13px;
+        }
+      }
+
+.contact_section {
+  background-color: #000;
+  padding: 0px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  box-sizing: border-box;
+  margin-top: 40px;
+}
+
+.contact_title {
+    font-size: 32px;
+    background: -webkit-linear-gradient(#e86939, #999999);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 300;
+  font-size: 32px;
+  margin-bottom: 30px;
+  font-family: Arial, sans-serif;
+  text-align: center;
+}
+
+.contact_icons_container {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  background-color: #1B1819;
+  padding: 30px 40px;
+  border-radius: 8px;
+  max-width: 800px;
+  width: 100%;
+}
+
+.contact_icon_link {
+  text-decoration: none;
+}
+
+.contact_icon {
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: transform 0.3s ease;
+  position: relative;
+}
+
+.contact_svg {
+  width: 30px;
+  height: 30px;
+  fill: #D07251;
+  transition: fill 0.3s ease;
+}
+.contact_svg:hover{
+    fill:#f6c5b6 ;
+}
+.contact_icon:hover {
+  transform: scale(1.15);
+}
+
+.contact_icon::before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background-color: transparent;
+  box-shadow: 0 0 0 0 rgba(230, 126, 34, 0.7);
+  transition: box-shadow 0.3s ease;
+  z-index: -1;
+}
+
+.contact_icon.contact_glow::before {
+  animation: contact_pulse 1.5s ease;
+}
+
+@keyframes contact_pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(230, 126, 34, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 15px rgba(230, 126, 34, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(230, 126, 34, 0);
+  }
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .contact_title {
+    font-size: 28px;
+  }
+  
+  .contact_icons_container {
+    gap: 30px;
+    padding: 25px 30px;
+  }
+  
+  .contact_icon {
+    width: 45px;
+    height: 45px;
+  }
+  
+  .contact_svg {
+    width: 25px;
+    height: 25px;
+  }
+}
+
+@media (max-width: 480px) {
+  .contact_title {
+    font-size: 24px;
+  }
+  
+  .contact_icons_container {
+    gap: 20px;
+    padding: 20px;
+  }
+  
+  .contact_icon {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .contact_svg {
+    width: 22px;
+    height: 22px;
+  }
+}
+
+@media (max-width: 350px) {
+  .contact_icons_container {
+    gap: 15px;
+  }
+  
+  .contact_icon {
+    width: 35px;
+    height: 35px;
+  }
+  
+  .contact_svg {
+    width: 20px;
+    height: 20px;
+  }
+}
+.last-container{
+    max-height: 100px;
+}
+.img-last{
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+    opacity: 0.15;
+}
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <nav class="navbar">
-        <div class="logo-container">
-            <img src="./Assets/logo.png" alt="Stay Ripped" class="logo">
-        </div>
-        
-        <ul class="nav-links">
-            <li><a href="#">Plans</a></li>
-            <li><a href="#">Transformations</a></li>
-            <li><a href="#">Gallery</a></li>
-            <li><a href="#">Contact us</a></li>
-        </ul>
-        
-        <button class="hamburger" id="hamburger">
-            <div class="bar"></div>
-            <div class="bar"></div>
-            <div class="bar"></div>
-        </button>
+      <div class="logo-container">
+        <img src="./Assets/logo.png" alt="Stay Ripped" class="logo" />
+      </div>
+
+      <ul class="nav-links">
+        <li><a href="#">Plans</a></li>
+        <li><a href="#">Transformations</a></li>
+        <li><a href="#">Gallery</a></li>
+        <li><a href="#">Contact us</a></li>
+      </ul>
+
+      <button class="hamburger" id="hamburger">
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+      </button>
     </nav>
     <div class="container">
-      
+      <div class="content">
+        <div class="text-section">
+          <div class="header">
+            <h1 class="name"><span class="by-text">By</span> ARJUN</h1>
+            <p class="title">Personal trainer and diet consultant</p>
+          </div>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras
+            tincidunt, massa id rutrum pharetra, neque nisl consectetur libero,
+            at bibendum diam dolor eget est. Pellentesque finibus dui nec massa
+            ultricies, id pretium risus scelerisque. Sed accumsan non lacus sit
+            amet tempus. Aliquam a ex nec neque efficitur lacinia. Aliquam
+            vulputate ex purus, ut aliquet nisl porta quis.
+          </p>
 
-        <div class="content">
-           
-            <div class="text-section">
-                <div class="header">
-            
-                    <h1 class="name"><span class="by-text">By</span> ARJUN</h1>
-                    <p class="title">Personal trainer and diet consultant</p>
-                </div>
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras tincidunt, 
-                    massa id rutrum pharetra, neque nisl consectetur libero, at bibendum diam 
-                    dolor eget est. Pellentesque finibus dui nec massa ultricies, id pretium risus 
-                    scelerisque. Sed accumsan non lacus sit amet tempus. Aliquam a ex nec 
-                    neque efficitur lacinia. Aliquam vulputate ex purus, ut aliquet nisl porta quis.
-                </p>
-
-                <div class="buttons">
-                    <button class="btn btn-primary">Certification</button>
-                    <button class="btn btn-outline">View Gallery</button>
-                </div>
-            </div>
-
-            <div class="image-section">
-                <div class="trainer-image">
-                    <img src="./Assets/topPhoto.png" alt="Fitness trainer posing with dumbbells">
-                </div>
-            </div>
+          <div class="buttons">
+            <button class="btn btn-primary">Certification</button>
+            <button class="btn btn-outline">View Gallery</button>
+          </div>
         </div>
 
-        <!-- Pricing Section -->
-        <div class="pricing-section">
-            <div class="pricing-header">
-                <h2 class="pricing-title">Choose your plan</h2>
-                <p class="pricing-description">Our plans are designed to be affordable, and aligned to your unique needs.</p>
+        <div class="image-section">
+          <div class="trainer-image">
+            <img
+              src="./Assets/topPhoto.png"
+              alt="Fitness trainer posing with dumbbells"
+            />
+          </div>
+        </div>
+      </div>
+
+      <!-- Pricing Section -->
+      <div class="pricing-section">
+        <div class="pricing-header">
+          <h2 class="pricing-title">Choose your plan</h2>
+          <p class="pricing-description">
+            Our plans are designed to be affordable, and aligned to your unique
+            needs.
+          </p>
+        </div>
+
+        <div class="pricing-cards-container">
+          <div class="pricing-cards">
+            <div class="pricing-card">
+              <div class="card-label">
+                <div class="inner-card-label">Best value</div>
+              </div>
+              <h3 class="card-title">PREMIUM</h3>
+              <div class="card-price">
+                <span class="price-amount">$ 379</span>
+                <span class="price-period">/month</span>
+              </div>
+              <p class="terms">*Terms and conditions applied</p>
+
+              <h4 class="features-title">Features</h4>
+              <ul class="features-list">
+                <li>Lorem ipsum dolor sit amet, consectetur</li>
+                <li>Lorem ipsum dolor sit amet, consectetur</li>
+                <li>Lorem ipsum dolor sit amet, consectetur</li>
+                <li>Lorem ipsum dolor sit amet, consectetur</li>
+                <li>Lorem ipsum dolor sit amet, consectetur</li>
+                <li>Lorem ipsum dolor sit amet, consectetur</li>
+              </ul>
+
+              <button class="btn btn-primary card-button">Explore</button>
             </div>
 
-            <div class="pricing-cards-container">
-                <div class="pricing-cards">
-                    <div class="pricing-card">
-                        <div class="card-label"><div class="inner-card-label">Best value</div></div>
-                        <h3 class="card-title">PREMIUM</h3>
-                        <div class="card-price">
-                            <span class="price-amount">$ 379</span>
-                            <span class="price-period">/month</span>
-                        </div>
-                        <p class="terms">*Terms and conditions applied</p>
-                        
-                        <h4 class="features-title">Features</h4>
-                        <ul class="features-list">
-                            <li>Lorem ipsum dolor sit amet, consectetur</li>
-                            <li>Lorem ipsum dolor sit amet, consectetur</li>
-                            <li>Lorem ipsum dolor sit amet, consectetur</li>
-                            <li>Lorem ipsum dolor sit amet, consectetur</li>
-                            <li>Lorem ipsum dolor sit amet, consectetur</li>
-                            <li>Lorem ipsum dolor sit amet, consectetur</li>
-                        </ul>
-                        
-                        <button class="btn btn-primary card-button">Explore</button>
-                    </div>
+            <div class="pricing-card-simple">
+              <h3 class="card-title">BASIC</h3>
+              <div class="card-price">
+                <span class="price-amount">$ 249</span>
+                <span class="price-period">/month</span>
+              </div>
+              <p class="terms">*Terms and conditions applied</p>
 
-                    <div class="pricing-card-simple">
-                        <h3 class="card-title">BASIC</h3>
-                        <div class="card-price">
-                            <span class="price-amount">$ 249</span>
-                            <span class="price-period">/month</span>
-                        </div>
-                        <p class="terms">*Terms and conditions applied</p>
-                        
-                        <h4 class="features-title">Features</h4>
-                        <ul class="features-list">
-                            <li>Lorem ipsum dolor sit amet, consectetur</li>
-                            <li>Lorem ipsum dolor sit amet, consectetur</li>
-                            <li>Lorem ipsum dolor sit amet, consectetur</li>
-                        </ul>
-                        
-                        <div class="arrow-button">
-                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8-8-8z"/>
-                            </svg>
-                        </div>
-                    </div>
+              <h4 class="features-title">Features</h4>
+              <ul class="features-list">
+                <li>Lorem ipsum dolor sit amet, consectetur</li>
+                <li>Lorem ipsum dolor sit amet, consectetur</li>
+                <li>Lorem ipsum dolor sit amet, consectetur</li>
+              </ul>
 
-                    <div class="pricing-card-simple">
-                        <h3 class="card-title">STANDARD</h3>
-                        <div class="card-price">
-                            <span class="price-amount">$ 99</span>
-                            <span class="price-period">/month</span>
-                        </div>
-                        <p class="terms">*Terms and conditions applied</p>
-                        
-                        <h4 class="features-title">Features</h4>
-                        <ul class="features-list">
-                            <li>Lorem ipsum dolor sit amet, consectetur</li>
-                            <li>Lorem ipsum dolor sit amet, consectetur</li>
-                            <li>Lorem ipsum dolor sit amet, consectetur</li>
-                            <li>Lorem ipsum dolor sit amet, consectetur</li>
-                        </ul>
-                        
-                        <div class="arrow-button">
-                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8-8-8z"/>
-                            </svg>
-                        </div>
-                    </div>
-                </div>
+              <div class="arrow-button">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8-8-8z"
+                  />
+                </svg>
+              </div>
             </div>
 
-            <!-- <div class="pagination">
+            <div class="pricing-card-simple">
+              <h3 class="card-title">STANDARD</h3>
+              <div class="card-price">
+                <span class="price-amount">$ 99</span>
+                <span class="price-period">/month</span>
+              </div>
+              <p class="terms">*Terms and conditions applied</p>
+
+              <h4 class="features-title">Features</h4>
+              <ul class="features-list">
+                <li>Lorem ipsum dolor sit amet, consectetur</li>
+                <li>Lorem ipsum dolor sit amet, consectetur</li>
+                <li>Lorem ipsum dolor sit amet, consectetur</li>
+                <li>Lorem ipsum dolor sit amet, consectetur</li>
+              </ul>
+
+              <div class="arrow-button">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8-8-8z"
+                  />
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- <div class="pagination">
                 <span class="pagination-dot active"></span>
                 <span class="pagination-dot"></span>
                 <span class="pagination-dot"></span>
             </div> -->
+      </div>
+
+      <!-- Testimonial Slider Component with Static Heading -->
+      <div class="testy_main_container">
+        <!-- Static heading section -->
+        <div class="testy_heading_section">
+          <h2 class="testy_main_heading">Client Testimonials</h2>
+          <p class="testy_tagline">We guarantee transformation</p>
         </div>
+
+        <!-- Slider container -->
+        <div class="testy_container">
+          <div class="testy_slider">
+            <!-- Slides will be generated here via JavaScript -->
+          </div>
+
+          <!-- Navigation dots -->
+          <div class="testy_dots"></div>
+        </div>
+      </div>
+
+      <div class="contact_section">
+        <h2 class="contact_title">CONTACT US</h2>
+        <div class="contact_icons_container">
+          <a href="#" class="contact_icon_link">
+            <div class="contact_icon contact_whatsapp">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="contact_svg">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+              </svg>
+            </div>
+          </a>
+          <a href="#" class="contact_icon_link">
+            <div class="contact_icon contact_instagram">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="contact_svg">
+                <path d="M12 0C8.74 0 8.333.015 7.053.072 5.775.132 4.905.333 4.14.63c-.789.306-1.459.717-2.126 1.384S.935 3.35.63 4.14C.333 4.905.131 5.775.072 7.053.012 8.333 0 8.74 0 12s.015 3.667.072 4.947c.06 1.277.261 2.148.558 2.913.306.788.717 1.459 1.384 2.126.667.666 1.336 1.079 2.126 1.384.766.296 1.636.499 2.913.558C8.333 23.988 8.74 24 12 24s3.667-.015 4.947-.072c1.277-.06 2.148-.262 2.913-.558.788-.306 1.459-.718 2.126-1.384.666-.667 1.079-1.335 1.384-2.126.296-.765.499-1.636.558-2.913.06-1.28.072-1.687.072-4.947s-.015-3.667-.072-4.947c-.06-1.277-.262-2.149-.558-2.913-.306-.789-.718-1.459-1.384-2.126C21.319 1.347 20.651.935 19.86.63c-.765-.297-1.636-.499-2.913-.558C15.667.012 15.26 0 12 0zm0 2.16c3.203 0 3.585.016 4.85.071 1.17.055 1.805.249 2.227.415.562.217.96.477 1.382.896.419.42.679.819.896 1.381.164.422.36 1.057.413 2.227.057 1.266.07 1.646.07 4.85s-.015 3.585-.074 4.85c-.061 1.17-.256 1.805-.421 2.227-.224.562-.479.96-.899 1.382-.419.419-.824.679-1.38.896-.42.164-1.065.36-2.235.413-1.274.057-1.649.07-4.859.07-3.211 0-3.586-.015-4.859-.074-1.171-.061-1.816-.256-2.236-.421-.569-.224-.96-.479-1.379-.899-.421-.419-.69-.824-.9-1.38-.165-.42-.359-1.065-.42-2.235-.045-1.26-.061-1.649-.061-4.844 0-3.196.016-3.586.061-4.861.061-1.17.255-1.814.42-2.234.21-.57.479-.96.9-1.381.419-.419.81-.689 1.379-.898.42-.166 1.051-.361 2.221-.421 1.275-.045 1.65-.06 4.859-.06l.045.03zm0 3.678c-3.405 0-6.162 2.76-6.162 6.162 0 3.405 2.76 6.162 6.162 6.162 3.405 0 6.162-2.76 6.162-6.162 0-3.405-2.76-6.162-6.162-6.162zM12 16c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4zm7.846-10.405c0 .795-.646 1.44-1.44 1.44-.795 0-1.44-.646-1.44-1.44 0-.794.646-1.439 1.44-1.439.793-.001 1.44.645 1.44 1.439z"/>
+              </svg>
+            </div>
+          </a>
+          <a href="#" class="contact_icon_link">
+            <div class="contact_icon contact_snapchat">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="contact_svg">
+                <path d="M12.206.793c.99 0 4.347.276 5.93 3.821.529 1.193.403 3.219.299 4.847l-.003.06c-.012.18-.022.345-.03.51.075.045.203.09.401.09.3-.016.659-.12 1.033-.301.165-.088.344-.104.464-.104.182 0 .359.029.509.09.45.149.734.479.734.838.015.449-.39.839-1.213 1.168-.089.029-.209.075-.344.119-.45.135-1.139.36-1.333.81-.09.224-.061.524.12.868l.015.015c.06.136 1.526 3.475 4.791 4.014.255.044.435.27.42.509 0 .075-.015.149-.045.225-.24.569-1.273.988-3.146 1.271-.059.091-.12.375-.164.57-.029.179-.074.36-.134.553-.076.271-.27.405-.555.405h-.03c-.135 0-.313-.031-.538-.074-.36-.075-.765-.135-1.273-.135-.3 0-.599.015-.913.074-.6.104-1.123.464-1.723.884-.853.599-1.826 1.288-3.294 1.288-.06 0-.119-.015-.18-.015h-.149c-1.468 0-2.427-.675-3.279-1.288-.599-.42-1.107-.779-1.707-.884-.314-.045-.629-.074-.928-.074-.54 0-.958.089-1.272.149-.211.043-.391.074-.54.074-.374 0-.523-.224-.583-.42-.061-.192-.09-.36-.135-.553-.045-.195-.105-.42-.164-.575-1.859-.298-2.891-.703-3.145-1.28a.56.56 0 01-.06-.236c0-.224.166-.449.42-.509 3.264-.54 4.73-3.879 4.791-4.02l.016-.029c.18-.345.224-.645.119-.869-.195-.434-.884-.658-1.332-.809a2.338 2.338 0 01-.36-.119c-.674-.27-1.094-.659-1.079-1.093 0-.374.284-.719.779-.884.15-.046.314-.075.479-.075.144 0 .33.03.484.119.369.18.728.27 1.033.27.215 0 .359-.045.449-.09-.015-.18-.031-.36-.045-.54-.134-1.574-.284-3.575.256-4.694 1.514-3.204 4.654-3.45 5.644-3.45h.29z"/>
+              </svg>
+            </div>
+          </a>
+          <a href="#" class="contact_icon_link">
+            <div class="contact_icon contact_email">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="contact_svg">
+                <path d="M0 3v18h24v-18h-24zm21.518 2l-9.518 7.713-9.518-7.713h19.036zm-19.518 14v-11.817l10 8.104 10-8.104v11.817h-20z"/>
+              </svg>
+            </div>
+          </a>
+        </div>
+      </div>
+      <div class="last-container">
+        <img src="./Assets/logo.png" alt="" class="img-last">
+      </div>
     </div>
 
     <script>
-        const hamburger = document.getElementById('hamburger');
-        const navLinks = document.querySelector('.nav-links');
+      const hamburger = document.getElementById("hamburger");
+      const navLinks = document.querySelector(".nav-links");
 
-        hamburger.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-            hamburger.classList.toggle('active');
+      hamburger.addEventListener("click", () => {
+        navLinks.classList.toggle("active");
+        hamburger.classList.toggle("active");
+      });
+      document.addEventListener("DOMContentLoaded", function () {
+        const certButton = document.querySelector(".btn-primary");
+        const galleryButton = document.querySelector(".btn-outline");
+        const arrowButtons = document.querySelectorAll(".arrow-button");
+        const paginationDots = document.querySelectorAll(".pagination-dot");
+
+        certButton.addEventListener("click", function () {
+          alert("Certification details will be displayed here.");
         });
-        document.addEventListener('DOMContentLoaded', function() {
-            const certButton = document.querySelector('.btn-primary');
-            const galleryButton = document.querySelector('.btn-outline');
-            const arrowButtons = document.querySelectorAll('.arrow-button');
-            const paginationDots = document.querySelectorAll('.pagination-dot');
-            
-            certButton.addEventListener('click', function() {
-                alert('Certification details will be displayed here.');
-            });
-            
-            galleryButton.addEventListener('click', function() {
-                alert('Gallery will be displayed here.');
-            });
-            
-            // Card arrow buttons
-            arrowButtons.forEach(btn => {
-                btn.addEventListener('click', function() {
-                    const card = this.closest('.pricing-card');
-                    alert('You selected the ' + card.querySelector('.card-title').textContent + ' plan.');
+
+        galleryButton.addEventListener("click", function () {
+          alert("Gallery will be displayed here.");
+        });
+
+        // Card arrow buttons
+        arrowButtons.forEach((btn) => {
+          btn.addEventListener("click", function () {
+            const card = this.closest(".pricing-card");
+            alert(
+              "You selected the " +
+                card.querySelector(".card-title").textContent +
+                " plan."
+            );
+          });
+        });
+
+        // Mobile pagination functionality
+        let currentSlide = 0;
+        paginationDots.forEach((dot, index) => {
+          dot.addEventListener("click", function () {
+            // Update active dot
+            paginationDots.forEach((d) => d.classList.remove("active"));
+            this.classList.add("active");
+
+            // On mobile, scroll to the appropriate card
+            if (window.innerWidth <= 768) {
+              const cards = document.querySelectorAll(".pricing-card");
+              if (cards[index]) {
+                const container = document.querySelector(
+                  ".pricing-cards-container"
+                );
+                container.scrollTo({
+                  left: cards[index].offsetLeft - 15,
+                  behavior: "smooth",
                 });
-            });
-            
-            // Mobile pagination functionality
-            let currentSlide = 0;
-            paginationDots.forEach((dot, index) => {
-                dot.addEventListener('click', function() {
-                    // Update active dot
-                    paginationDots.forEach(d => d.classList.remove('active'));
-                    this.classList.add('active');
-                    
-                    // On mobile, scroll to the appropriate card
-                    if (window.innerWidth <= 768) {
-                        const cards = document.querySelectorAll('.pricing-card');
-                        if (cards[index]) {
-                            const container = document.querySelector('.pricing-cards-container');
-                            container.scrollTo({
-                                left: cards[index].offsetLeft - 15,
-                                behavior: 'smooth'
-                            });
-                        }
-                        currentSlide = index;
-                    }
-                });
-            });
-            
-            // Update pagination dots when scrolling on mobile
-            const cardsContainer = document.querySelector('.pricing-cards-container');
-            if (cardsContainer) {
-                cardsContainer.addEventListener('scroll', function() {
-                    if (window.innerWidth <= 768) {
-                        const cards = document.querySelectorAll('.pricing-card');
-                        const containerLeft = this.scrollLeft;
-                        
-                        cards.forEach((card, index) => {
-                            const cardLeft = card.offsetLeft - 15;
-                            const cardRight = cardLeft + card.offsetWidth;
-                            
-                            if (containerLeft >= cardLeft - card.offsetWidth/2 && 
-                                containerLeft < cardRight - card.offsetWidth/2) {
-                                paginationDots.forEach(d => d.classList.remove('active'));
-                                paginationDots[index].classList.add('active');
-                            }
-                        });
-                    }
-                });
+              }
+              currentSlide = index;
             }
+          });
         });
+
+        // Update pagination dots when scrolling on mobile
+        const cardsContainer = document.querySelector(
+          ".pricing-cards-container"
+        );
+        if (cardsContainer) {
+          cardsContainer.addEventListener("scroll", function () {
+            if (window.innerWidth <= 768) {
+              const cards = document.querySelectorAll(".pricing-card");
+              const containerLeft = this.scrollLeft;
+
+              cards.forEach((card, index) => {
+                const cardLeft = card.offsetLeft - 15;
+                const cardRight = cardLeft + card.offsetWidth;
+
+                if (
+                  containerLeft >= cardLeft - card.offsetWidth / 2 &&
+                  containerLeft < cardRight - card.offsetWidth / 2
+                ) {
+                  paginationDots.forEach((d) => d.classList.remove("active"));
+                  paginationDots[index].classList.add("active");
+                }
+              });
+            }
+          });
+        }
+      });
     </script>
-</body>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // Sample testimonial data (in the future, this would come from your API)
+        const testimonialData = [
+          {
+            name: "Nihal Sharma",
+            text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis enim lectus, viverra eget mattis et, lobortis a augue. Cras sed neque dignissim arcu lobortis blandit. Sed sollicitudin, nulla nec tincidunt pretium.",
+            rating: 5,
+            beforeImage: "./Assets/before1.png",
+            afterImage: "./Assets/after1.png",
+          },
+          {
+            name: "John Smith",
+            text: "Nullam sagittis erat ut magna efficitur, at volutpat dolor finibus. Integer maximus nisl et ante commodo luctus. Phasellus eget accumsan nisl, sit amet tempus dolor.",
+            rating: 5,
+            beforeImage: "./Assets/before1.png",
+            afterImage: "./Assets/after1.png",
+          },
+          {
+            name: "Emma Johnson",
+            text: "Ut placerat, massa eget aliquam varius, lacus lorem tempor risus, vel tempus lacus elit id orci. In hac habitasse platea dictumst. Vestibulum ante ipsum primis.",
+            rating: 5,
+            beforeImage: "./Assets/before1.png",
+            afterImage: "./Assets/after1.png",
+          },
+        ];
+
+        const slider = document.querySelector(".testy_slider");
+        const dotsContainer = document.querySelector(".testy_dots");
+
+        // Function to generate rating stars based on rating value
+        function generateStars(rating) {
+          let starsHTML = "";
+          for (let i = 0; i < rating; i++) {
+            starsHTML += '<span class="testy_star">★</span>';
+          }
+          return starsHTML;
+        }
+
+        // Function to render testimonials from data
+        function renderTestimonials(data) {
+          // Clear existing content
+          slider.innerHTML = "";
+          dotsContainer.innerHTML = "";
+
+          // Generate slides from data
+          data.forEach((testimonial, index) => {
+            // Create slide element
+            const slide = document.createElement("div");
+            slide.classList.add("testy_slide");
+
+            // Create slide HTML content
+            slide.innerHTML = `
+          <div class="testy_transformation">
+            <div class="testy_photo_container">
+              <img src="${
+                testimonial.beforeImage
+              }" alt="Before transformation" class="testy_photo testy_before">
+              <img src="${
+                testimonial.afterImage
+              }" alt="After transformation" class="testy_photo testy_after">
+            </div>
+            <div class="testy_content">
+              <h3 class="testy_name">${testimonial.name}</h3>
+              <p class="testy_text">${testimonial.text}</p>
+              <div class="testy_rating">
+                ${generateStars(testimonial.rating)}
+              </div>
+            </div>
+          </div>
+        `;
+
+            // Add slide to slider
+            slider.appendChild(slide);
+
+            // Create dot for navigation
+            const dot = document.createElement("div");
+            dot.classList.add("testy_dot");
+            if (index === 0) dot.classList.add("testy_active");
+
+            dot.addEventListener("click", () => {
+              goToSlide(index);
+              resetAutoSlide();
+            });
+
+            dotsContainer.appendChild(dot);
+          });
+        }
+
+        // Render initial testimonials
+        renderTestimonials(testimonialData);
+
+        // Set up slider functionality
+        let currentIndex = 0;
+        let direction = 1; // 1 for right, -1 for left
+        const slideWidth = 100; // 100% width for each slide
+
+        function updateDots() {
+          document.querySelectorAll(".testy_dot").forEach((dot, index) => {
+            dot.classList.toggle("testy_active", index === currentIndex);
+          });
+        }
+
+        function goToSlide(index) {
+          currentIndex = index;
+          slider.style.transform = `translateX(-${slideWidth * currentIndex}%)`;
+          updateDots();
+        }
+
+        function nextSlide() {
+          const slides = document.querySelectorAll(".testy_slide");
+
+          if (direction === 1) {
+            if (currentIndex >= slides.length - 1) {
+              direction = -1; // Change direction to left
+            } else {
+              currentIndex++;
+            }
+          } else {
+            if (currentIndex <= 0) {
+              direction = 1; // Change direction to right
+            } else {
+              currentIndex--;
+            }
+          }
+
+          goToSlide(currentIndex);
+        }
+
+        // Auto slide
+        let autoSlideInterval;
+
+        function startAutoSlide() {
+          autoSlideInterval = setInterval(nextSlide, 4000);
+        }
+
+        function resetAutoSlide() {
+          clearInterval(autoSlideInterval);
+          startAutoSlide();
+        }
+
+        // Initialize auto sliding
+        startAutoSlide();
+
+        // Add touch/swipe functionality
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        slider.addEventListener(
+          "touchstart",
+          (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+          },
+          { passive: true }
+        );
+
+        slider.addEventListener(
+          "touchend",
+          (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+            resetAutoSlide();
+          },
+          { passive: true }
+        );
+
+        function handleSwipe() {
+          const slides = document.querySelectorAll(".testy_slide");
+          const difference = touchStartX - touchEndX;
+
+          if (difference > 50 && currentIndex < slides.length - 1) {
+            // Swipe left
+            currentIndex++;
+            direction = 1;
+          } else if (difference < -50 && currentIndex > 0) {
+            // Swipe right
+            currentIndex--;
+            direction = -1;
+          }
+          goToSlide(currentIndex);
+        }
+
+        // API Integration Example (for future use)
+        // Function to fetch testimonials from an API
+        async function fetchTestimonials() {
+          try {
+            // This is just a placeholder. Replace with your actual API endpoint
+            // const response = await fetch('your-api-endpoint/testimonials');
+            // const data = await response.json();
+            // renderTestimonials(data);
+
+            // For now, we're using the sample data directly
+            renderTestimonials(testimonialData);
+          } catch (error) {
+            console.error("Error fetching testimonials:", error);
+          }
+        }
+
+        // Uncomment this to use the API fetch function instead of sample data
+        // fetchTestimonials();
+      });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+  const icons = document.querySelectorAll('.contact_icon');
+  let currentIndex = 0;
+  
+  function glowNextIcon() {
+    // Remove glow from all icons
+    icons.forEach(icon => {
+      icon.classList.remove('contact_glow');
+    });
+    
+    // Add glow to current icon
+    if (currentIndex < icons.length) {
+      icons[currentIndex].classList.add('contact_glow');
+      currentIndex++;
+    }
+    
+    // Reset index if we've gone through all icons
+    if (currentIndex >= icons.length) {
+      currentIndex = 0;
+    }
+  }
+  
+  // Initial glow
+  glowNextIcon();
+  
+  // Set interval for icon glow animation
+  setInterval(glowNextIcon, 2000);
+});
+    </script>
+  </body>
 </html>
