@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Certification</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #1a1a1a;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        
+        .heading-container {
+            text-align: center;
+            margin-bottom: 40px;
+            width: 100%;
+            max-width: 800px;
+        }
+        
+        h1 {
+            font-size: 42px;
+            margin-bottom: 10px;
+            color: #e97254;
+            font-weight: normal;
+        }
+        
+        h2 {
+            font-size: 24px;
+            font-weight: normal;
+            margin-top: 0;
+        }
+        
+        .certificate-container {
+            width: 100%;
+            max-width: 700px;
+            padding: 0 15px;
+            box-sizing: border-box;
+        }
+        
+        .certificate-image {
+            width: 100%;
+            height: auto;
+            display: block;
+            border: none;
+        }
+        
+        /* Responsive styles */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 32px;
+            }
+            
+            h2 {
+                font-size: 20px;
+            }
+            
+            .heading-container {
+                margin-bottom: 30px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 28px;
+            }
+            
+            h2 {
+                font-size: 18px;
+            }
+            
+            .heading-container {
+                margin-bottom: 20px;
+            }
+            
+            body {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="heading-container">
+        <h1>Certification</h1>
+        <h2>ACE Personal Training program</h2>
+    </div>
+    
+    <div class="certificate-container">
+        <img class="certificate-image" src="./Assets/IMG-20250418-WA0100.jpg" alt="Certificate of Completion for ARJUN SAINI">
+    </div>
+
+    <script>
+        // This script ensures the certificate image is properly sized on all devices
+        window.addEventListener('load', () => {
+            const resizeImage = () => {
+                const container = document.querySelector('.certificate-container');
+                const image = document.querySelector('.certificate-image');
+                
+                // Ensure image doesn't exceed container width
+                image.style.maxWidth = '100%';
+            };
+            
+            // Initial sizing
+            resizeImage();
+            
+            // Resize on window change
+            window.addEventListener('resize', resizeImage);
+        });
+    </script>
+</body>
+</html>
