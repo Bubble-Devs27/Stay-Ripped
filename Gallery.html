@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dynamic Image Cards</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #000;
+        position: relative;
+        margin: 0;
+        min-height: 100vh;
+        z-index: 0;
+      }
+      body::before {
+        content: "";
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background-image: url("./Assets/Gallery.png");
+        background-size: contain;
+        background-position: center;
+        opacity: 0.06; /* Change this for transparency */
+        z-index: -1;
+        pointer-events: none; /* Allows clicks to pass through */
+      }
+      .container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        padding: 20px;
+        gap: 20px;
+      }
+      .card {
+        width: 300px;
+        height: 200px;
+        overflow: hidden;
+        border-radius: 12px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        cursor: pointer;
+        transition: transform 0.2s;
+        background-color: rgb(40, 40, 40);
+      }
+      .card img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+      .card:hover {
+        transform: scale(1.05);
+      }
+
+      .overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background-color: rgba(0, 0, 0, 0.9);
+        display: none;
+        align-items: center;
+        justify-content: center;
+        z-index: 1000;
+      }
+
+      .overlay.active {
+        display: flex;
+      }
+
+      .overlay img {
+        max-width: 90vw;
+        max-height: 90vh;
+        object-fit: contain;
+      }
+      .title-top{
+        font-size: 38px;
+        font-weight: bold;
+        background: -webkit-linear-gradient(#d16741, #999999);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        font-weight: 600;
+        text-align: center ;
+        
+      }
+      @media (max-width: 768px){
+        .title-top{
+          font-size: 30px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <h1 class="title-top">Explore my life </h1>
+    <div class="container" id="card-container"></div>
+
+    <div class="overlay" id="overlay">
+      <img id="full-image" src="" alt="Full Image" />
+    </div>
+
+    <script>
+      const imageData = [
+        { imageUrl: "https://res.cloudinary.com/dlcoyxwco/image/upload/v1745438995/cl2_l0dqos.jpg" },
+        { imageUrl: "https://res.cloudinary.com/dlcoyxwco/image/upload/v1745438995/cl3_scvtcd.jpg" },
+        { imageUrl: "https://res.cloudinary.com/dlcoyxwco/image/upload/v1745438994/cl1_rm8rmp.jpg" },
+       
+      ];
+      window.addEventListener('load', () => {
+      fetch('https://680944093e2c220194a1.fra.appwrite.run/') // Replace with your API
+        .then(response => response.json())
+        .then(data => {
+          console.log(data)
+        })
+        .catch(error => {
+          console.error('Error:', error);
+        });
+    });
+      const container = document.getElementById("card-container");
+      const overlay = document.getElementById("overlay");
+      const fullImage = document.getElementById("full-image");
+
+      function renderCards(images) {
+        images.forEach((data) => {
+          const card = document.createElement("div");
+          card.className = "card";
+          const img = document.createElement("img");
+          img.src = data.imageUrl;
+          card.appendChild(img);
+
+          card.addEventListener("click", () => {
+            fullImage.src = data.imageUrl;
+            overlay.classList.add("active");
+            history.pushState({ fullScreen: true }, ""); // Push new state
+          });
+
+          container.appendChild(card);
+        });
+      }
+
+      function closeFullScreen() {
+        overlay.classList.remove("active");
+        fullImage.src = "";
+      }
+
+      // Click on overlay closes full screen
+      overlay.addEventListener("click", closeFullScreen);
+
+      // Escape key closes full screen
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") {
+          if (overlay.classList.contains("active")) {
+            history.back(); // simulate back press
+          }
+        }
+      });
+
+      // Back button on phone closes full screen
+      window.addEventListener("popstate", (event) => {
+        if (overlay.classList.contains("active")) {
+          closeFullScreen();
+        }
+      });
+
+      // Initial render
+      renderCards(imageData);
+    </script>
+  </body>
+</html>
