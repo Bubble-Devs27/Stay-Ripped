@@ -57,7 +57,6 @@
         display: flex;
         flex-direction: row;
         justify-content: space-between;
-
         gap: 30px;
         margin-bottom: 80px;
       }
@@ -314,7 +313,10 @@
       .pagination-dot.active {
         background-color: white;
       }
-
+      .trainer-image-internel{
+        display: none;
+          visibility: hidden;
+      }
       /* Mobile Styles */
       @media (max-width: 768px) {
         .container {
@@ -322,16 +324,42 @@
           text-align: center;
         }
 
-        .header {
-          align-items: center;
-        }
 
+        .header {
+          /* align-items: center; */
+          
+          display:flex;
+          flex-direction: row;
+          margin-bottom:30px ;
+        }
+        .trainer-image-internel{
+         display: block;
+        visibility: visible;
+         height: auto;
+         width: 50%;
+         
+      }
+      .header-in{
+        
+        width: 50%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+      .in-image{
+        height: 100%;
+        width: 100%;
+      }
+        .image-section{
+          display: none;
+          visibility: hidden;
+        }
         .name {
           font-size: 36px;
         }
 
         .content {
-          flex-direction: column-reverse;
+          flex-direction: column;
           margin-bottom: 40px;
         }
 
@@ -830,8 +858,17 @@
       <div class="content">
         <div class="text-section">
           <div class="header">
-            <h1 class="name"><span class="by-text">By</span> ARJUN</h1>
-            <p class="title">Personal trainer and diet consultant</p>
+            <div class="trainer-image-internel">
+              <img
+                src="./Assets/topPhotof.png"
+                alt="Fitness trainer posing with dumbbells"
+                class="in-image"
+              />
+            </div>
+            <div class="header-in">
+              <h1 class="name"><span class="by-text">By</span> ARJUN</h1>
+              <p class="title">Personal trainer and diet consultant</p></div>
+            
           </div>
           <p class="sub-text-intro">
             Hi, I'm Arjun Saini, a certified gym trainer with credentials from

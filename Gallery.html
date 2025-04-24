@@ -99,6 +99,20 @@
         transition: transform 0.2s;
         background-color: rgb(40, 40, 40);
       }
+      body::before {
+        content: "";
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background-image: url("./Assets/Gallery.png");
+        background-size: contain;
+        background-position: center;
+        opacity: 0.1; /* Change this for transparency */
+        z-index: -1;
+        pointer-events: none; /* Allows clicks to pass through */
+      }
       }
     </style>
   </head>
